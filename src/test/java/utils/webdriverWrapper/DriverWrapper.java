@@ -1,6 +1,7 @@
 package utils.webdriverWrapper;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,7 +21,7 @@ public class DriverWrapper{
     }
     public WebElement waitForElement(By elemetToWaitFor){
         boolean found= false;
-        int retries = 6;
+        int retries = 10;
         WebElement res = null;
         while (retries>0&&!found) {
 
@@ -30,7 +31,7 @@ public class DriverWrapper{
             catch (Exception e){
                 retries--;
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
@@ -47,5 +48,8 @@ public class DriverWrapper{
     }
     public void setText(By elemetToSetText,String textToSet) {
         waitForElement(elemetToSetText).sendKeys(textToSet);
+    }
+    public void hitEnter(By elemetToHit) {
+        waitForElement(elemetToHit).sendKeys(Keys.ENTER);
     }
 }

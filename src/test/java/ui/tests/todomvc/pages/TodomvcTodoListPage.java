@@ -13,5 +13,7 @@ public class TodomvcTodoListPage extends BasePage {
     public void setNewTodoName(String name){
         driver.clearText(newTodoInput);
         driver.setText(newTodoInput,name);
+        driver.hitEnter(newTodoInput);
+
     }
 }
