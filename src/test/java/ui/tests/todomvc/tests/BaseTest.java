@@ -40,16 +40,15 @@ public class BaseTest {
     }
 
     private void driverSetup(){
-        DesiredCapabilities dc;
+        DesiredCapabilities dc = new DesiredCapabilities();
 
         if (browser.equalsIgnoreCase("firefox")){
             FirefoxProfile ffProfile  =  new FirefoxProfile();
-            dc = DesiredCapabilities.firefox();
             dc.setCapability(FirefoxDriver.PROFILE,ffProfile);
         }
         else {
             ChromeOptions options = new ChromeOptions();
-            dc =  DesiredCapabilities.chrome();
+            options.addArguments("--start-maximized");
             dc.setCapability(ChromeOptions.CAPABILITY, options);
         }
 

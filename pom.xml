@@ -51,8 +51,8 @@
     </dependencies>
     <build>
         <plugins>
-
             <plugin>
+                <!-- This is mainly fo remote execution -->
                 <groupId>com.lazerycode.selenium</groupId>
                 <artifactId>driver-binary-downloader-maven-plugin</artifactId>
                 <version>1.0.17</version>
