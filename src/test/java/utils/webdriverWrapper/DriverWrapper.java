@@ -32,7 +32,7 @@ public class DriverWrapper{
             catch (Exception e){
                 retries--;
                 try {
-                    Thread.sleep(300);
+                    Thread.sleep(500);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }

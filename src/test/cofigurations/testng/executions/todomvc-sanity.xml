@@ -4,6 +4,7 @@
     <test name="todomvc" >
         <classes>
             <class name="ui.tests.todomvc.tests.todolist.AddNewTodo" />
+            <class name="ui.tests.todomvc.tests.todolist.MarkTodoAsDone" />
         </classes>
     </test>
 </suite>

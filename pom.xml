@@ -10,6 +10,13 @@
 
     <properties>
         <selenium.version>3.11.0</selenium.version>
+        <selenium.hub.host>localhost:4444</selenium.hub.host>
+        <selenium.hub.url>http://${selenium.hub.host}/wd/hub</selenium.hub.url>
+        <browser>Chrome</browser>
+        <selenium.bineris.path>${project.basedir}/target/selenium/bin</selenium.bineris.path>
+        <!-- would have handle os in a profile  -->
+        <firefox.bin.path>${selenium.bineris.path}\windows\marionette\64bit\geckodriver.exe</firefox.bin.path>
+        <chrome.driver>${selenium.bineris.path}\windows\googlechrome\64bit\chromedriver.exe</chrome.driver>
     </properties>
 
     <dependencies>
@@ -51,7 +58,7 @@
                 <version>1.0.17</version>
                 <configuration>
                     <!-- root directory that downloaded driver binaries will be stored in -->
-                    <rootStandaloneServerDirectory>${project.basedir}/target/selenium/bin</rootStandaloneServerDirectory>
+                    <rootStandaloneServerDirectory>${selenium.bineris.path}</rootStandaloneServerDirectory>
                     <!-- Where you want to store downloaded zip files -->
                     <downloadedZipFileDirectory>${project.basedir}/target/selenium/zips</downloadedZipFileDirectory>
                 </configuration>
@@ -72,6 +79,12 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/cofigurations/testng/executions/todomvc-sanity.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <selenium.hub.url>${selenium.hub.url}</selenium.hub.url>
+                        <selenium.browser>${browser}</selenium.browser>
+                        <firefox.bin.path>${firefox.bin.path}</firefox.bin.path>
+                        <webdriver.chrome.driver>${chrome.driver}</webdriver.chrome.driver>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
