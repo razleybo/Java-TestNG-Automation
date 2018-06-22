@@ -12,7 +12,7 @@ or
 ```
 -Dselenium.hub.url = "http://myAwesomeHubMachine:4444/wd/hub"
 ```
-Also Chrome and Firefox are supported :
+Using  "Chrome" or "Firefox" :
 ```
 -Dbrowser="Firefox"
 ```
@@ -53,7 +53,7 @@ This section describe the next things I would like to implement
 ### Running Log
 We are missing a log reflecting on runtime , what is beeing performed 
 
-### Reedable report 
+### Readable report
 since we are using surefire plugin , we have automatic report under target/surefire-reports
 this can be improved 
 
