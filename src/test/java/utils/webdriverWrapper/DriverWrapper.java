@@ -57,4 +57,9 @@ public class DriverWrapper{
     public List<WebElement> getAllElements(By todoNames) {
         return driver.findElements(todoNames);
     }
+
+    public String getAttributeValue(By elementToQuarry, String attToGet) {
+        return waitForElement(elementToQuarry).getAttribute(attToGet);
+    }
 }
+

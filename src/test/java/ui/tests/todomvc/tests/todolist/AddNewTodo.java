@@ -10,7 +10,6 @@ public class AddNewTodo extends BaseTest {
         todoListActions.goToTodoListPage();
         todoListActions.addNewTodo(toDoName);
         todoListActions.verifyLastTodo(toDoName);
-
     }
     @Test(dependsOnMethods = "addNewTask")
     public void addMultipleTasks(){

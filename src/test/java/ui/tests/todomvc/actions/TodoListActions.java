@@ -4,8 +4,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import ui.tests.todomvc.pages.TodomvcHomePage;
 import ui.tests.todomvc.pages.TodomvcTodoListPage;
+import ui.tests.todomvc.tests.BaseTest;
 
 public class TodoListActions extends ActionsBase {
+
+    public enum ToDoState{
+        DONE,TODO
+    }
 
     private TodomvcHomePage todomvcHomePage;
     private TodomvcTodoListPage todomvcTodoListPage;
@@ -30,5 +35,18 @@ public class TodoListActions extends ActionsBase {
     public void verifyLastTodo(String toDoName) {
         String actualLastTodo = todomvcTodoListPage.getLastTodoText();
         Assert.assertEquals(actualLastTodo,toDoName,"Last todo was not as expected");
+    }
+
+    public void toggleToDo(String toDoName) {
+        todomvcTodoListPage.toggleTodo(toDoName);
+    }
+
+    public void verifyToDoState(String toDoName, ToDoState exactedState) {
+       String actualStatus =  todomvcTodoListPage.getTodoStatus(toDoName);
+       String expected ="" ;
+       if (exactedState.equals(ToDoState.DONE)){
+           expected = "completed";
+       }
+       Assert.assertEquals(actualStatus,expected,"Todo State was not as expected");
     }
 }

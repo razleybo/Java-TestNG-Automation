@@ -25,4 +25,19 @@ public class TodomvcTodoListPage extends BasePage {
         List<WebElement> allTdodNames = driver.getAllElements(todoNames);
         return allTdodNames.get(allTdodNames.size()-1).getText();
     }
+
+    public void toggleTodo(String toDoName) {
+        // ideally we would have ask for id from the developer
+        // since this is not passble in this case, we use a complex xpath
+        By toDoToToggle = new By.ByXPath("//label[text()='"+toDoName+"']/../input");
+        driver.waitForElement(toDoToToggle).click();
+    }
+    public String getTodoStatus(String toDoName) {
+        // ideally we would have ask for id from the developer
+        // since this is not passble in this case, we use a complex xpath
+        By toDoTegetSattus = new By.ByXPath("//*[text()='"+toDoName+"']/../..");
+
+        //same here , we want the developer to add an attribute or id for this
+        return driver.getAttributeValue(toDoTegetSattus,"class");
+    }
 }

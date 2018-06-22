@@ -3,7 +3,7 @@
 <suite name="todomvc" verbose="1" >
     <test name="todomvc" >
         <classes>
-            <class name="ui.tests.todomvc.blankTest" />
+            <class name="ui.tests.todomvc.tests.todolist.AddNewTodo" />
         </classes>
     </test>
 </suite>
