@@ -1,90 +1,64 @@
 # Todo MVC Automation
 This is a sample to an automation project running a simple tests on the http://todomvc.com/ site 
 on the React exsamle 
-## Getting Started
+## Running Info
 This Project is Build with Maven , Run with TestNG , Using Selenuim Remote Web Driver.
 
 It can be run on a local stend alone server , or using a remote hun , by overring system property :
--Dselenium.hub.host="myAwesomeHubMachine:4444" or 
+```
+-Dselenium.hub.host="myAwesomeHubMachine:4444" 
+```
+or
+```
 -Dselenium.hub.url = "http://myAwesomeHubMachine:4444/wd/hub"
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
 ```
-Give examples
+Also Chrome and Firefox are supported :
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+-Dbrowser="Firefox"
 ```
-Give the example
+or (by defult)
 ```
-
-And repeat
-
+-Dbrowser="Chrome"
 ```
-until finished
+### Run lochal host hub
+Download a [selenium stand alone binery](https://docs.seleniumhq.org/download/) and a [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and Run the stand alone Server.
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+java -jar selenium-server-standalone-<version>.jar
 ```
-Give an example
+### Run with remote hub
+All binaries are beeing automaticly downloaded 
+so only hub configurations is needed :
+```
+-Dselenium.hub.host="myAwesomeHubMachine:4444" 
+```
+or
+```
+-Dselenium.hub.url = "http://myAwesomeHubMachine:4444/wd/hub"
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+### Executing 
+Executing with Maven :
+* local selenium 
 ```
-Give an example
+mvn test
+```
+* remote hub 
+```
+mvn test -Dselenium.hub.host="myAwesomeHubMachine:4444"
 ```
 
-## Deployment
+## Next Implimitations 
+This section describe the next things I would like to implement
 
-Add additional notes about how to deploy this on a live system
+### Running Log
+We are missing a log reflecting on runtime , what is beeing performed 
 
-## Built With
+### Reedable report 
+since we are using surefire plugin , we have automatic report under target/surefire-reports
+this can be improved 
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Raz Leybowitch** - *:-)* 
 
