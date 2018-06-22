@@ -13,4 +13,10 @@ public class BasePage {
     public BasePage(RemoteWebDriver driver){
         this.driver = new DriverWrapper(driver);
     }
+
+    // I whould like this to be a class
+    // but due to time issues
+    private  void configurations(){
+
+    }
 }
