@@ -1,10 +1,12 @@
-# Project Title
-
-One Paragraph of project description goes here
-
+# Todo MVC Automation
+This is a sample to an automation project running a simple tests on the http://todomvc.com/ site 
+on the React exsamle 
 ## Getting Started
+This Project is Build with Maven , Run with TestNG , Using Selenuim Remote Web Driver.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+It can be run on a local stend alone server , or using a remote hun , by overring system property :
+-Dselenium.hub.host="myAwesomeHubMachine:4444" or 
+-Dselenium.hub.url = "http://myAwesomeHubMachine:4444/wd/hub"
 
 ### Prerequisites
 
