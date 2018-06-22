@@ -18,7 +18,6 @@ public class BaseTest {
    private RemoteWebDriver driver ;
    private String hubUrl;
    private String browser;
-   private String ffBin;
    protected TodoListActions todoListActions;
 
     @BeforeClass

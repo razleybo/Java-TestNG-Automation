@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import ui.tests.todomvc.tests.BaseTest;
 
 public class AddNewTodo extends BaseTest {
-   String toDoName = "My Awesome ToDo";
+   private String toDoName = "My Awesome ToDo";
     @Test
     public void addNewTask(){
         todoListActions.goToTodoListPage();

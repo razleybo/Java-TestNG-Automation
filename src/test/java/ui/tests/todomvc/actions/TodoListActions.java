@@ -4,7 +4,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import ui.tests.todomvc.pages.TodomvcHomePage;
 import ui.tests.todomvc.pages.TodomvcTodoListPage;
-import ui.tests.todomvc.tests.BaseTest;
 
 public class TodoListActions extends ActionsBase {
 
@@ -26,6 +25,7 @@ public class TodoListActions extends ActionsBase {
 
     public void goToTodoListPage(){
         todomvcHomePage.getPage();
+        todomvcTodoListPage.waitForPageLoade();
     }
     public void addNewTodo(String todoName) {
         todomvcTodoListPage.setNewTodoName(todoName);

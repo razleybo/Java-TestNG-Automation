@@ -5,7 +5,7 @@ import utils.webdriverWrapper.DriverWrapper;
 
 public class BasePage {
 
-    DriverWrapper driver ;
+    protected DriverWrapper driver ;
 
     public BasePage(RemoteWebDriver driver){
         this.driver = new DriverWrapper(driver);

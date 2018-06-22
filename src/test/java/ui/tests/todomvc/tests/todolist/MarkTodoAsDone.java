@@ -6,7 +6,7 @@ import ui.tests.todomvc.tests.BaseTest;
 
 public class MarkTodoAsDone extends BaseTest {
 
-    String toDoName = "My Awesome ToBeDone";
+    private String toDoName = "My Awesome ToBeDone";
     @Test
     public void addNewTask(){
         todoListActions.goToTodoListPage();

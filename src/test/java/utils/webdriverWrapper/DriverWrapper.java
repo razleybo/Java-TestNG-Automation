@@ -2,20 +2,13 @@ package utils.webdriverWrapper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 public class DriverWrapper{
 
     private RemoteWebDriver driver ;
-    private String hubUrl="http://localhost:4444/wd/hub";
 
     public DriverWrapper(RemoteWebDriver driver){
         this.driver=driver;
