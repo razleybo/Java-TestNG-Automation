@@ -1,6 +1,7 @@
 package ui.tests.todomvc.actions;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import ui.tests.todomvc.pages.TodomvcHomePage;
 import ui.tests.todomvc.pages.TodomvcTodoListPage;
 
@@ -24,5 +25,10 @@ public class TodoListActions extends ActionsBase {
     public void addNewTodo(String todoName) {
         todomvcTodoListPage.setNewTodoName(todoName);
         todomvcTodoListPage.hitEnterOnNewTodo();
+    }
+
+    public void verifyLastTodo(String toDoName) {
+        String actualLastTodo = todomvcTodoListPage.getLastTodoText();
+        Assert.assertEquals(actualLastTodo,toDoName,"Last todo was not as expected");
     }
 }

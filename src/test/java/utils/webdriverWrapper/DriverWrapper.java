@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class DriverWrapper{
 
@@ -51,5 +52,9 @@ public class DriverWrapper{
     }
     public void hitEnter(By elemetToHit) {
         waitForElement(elemetToHit).sendKeys(Keys.ENTER);
+    }
+
+    public List<WebElement> getAllElements(By todoNames) {
+        return driver.findElements(todoNames);
     }
 }
