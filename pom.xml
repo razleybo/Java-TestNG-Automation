@@ -17,15 +17,29 @@
         <!-- would have handle os in a profile  -->
         <firefox.bin.path>${selenium.bineris.path}\windows\marionette\64bit\geckodriver.exe</firefox.bin.path>
         <chrome.driver>${selenium.bineris.path}\windows\googlechrome\64bit\chromedriver.exe</chrome.driver>
+
+        <aspectj.version>1.8.10</aspectj.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.8</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+            <dependency>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-testng-adaptor</artifactId>
+                <version>RELEASE</version>
+            </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -51,6 +65,7 @@
     </dependencies>
     <build>
         <plugins>
+
             <plugin>
                 <!-- This is mainly fo remote execution -->
                 <groupId>com.lazerycode.selenium</groupId>
@@ -70,7 +85,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -85,9 +99,29 @@
                         <firefox.bin.path>${firefox.bin.path}</firefox.bin.path>
                         <webdriver.chrome.driver>${chrome.driver}</webdriver.chrome.driver>
                     </systemPropertyVariables>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>RELEASE</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
