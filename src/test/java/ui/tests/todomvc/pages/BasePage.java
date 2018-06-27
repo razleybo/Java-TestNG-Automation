@@ -7,7 +7,7 @@ public class BasePage {
 
     protected DriverWrapper driver ;
 
-    public BasePage(RemoteWebDriver driver){
-        this.driver = new DriverWrapper(driver);
+    public BasePage(DriverWrapper driver){
+        this.driver = driver;
     }
 }

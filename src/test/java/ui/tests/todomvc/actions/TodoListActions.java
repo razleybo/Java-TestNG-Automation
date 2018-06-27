@@ -2,8 +2,9 @@ package ui.tests.todomvc.actions;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
-import ui.tests.todomvc.pages.TodomvcHomePage;
-import ui.tests.todomvc.pages.TodomvcTodoListPage;
+import ui.tests.todomvc.pages.TodoHomePage;
+import ui.tests.todomvc.pages.TodoTodoListPage;
+import utils.webdriverWrapper.DriverWrapper;
 
 public class TodoListActions extends ActionsBase {
 
@@ -11,16 +12,16 @@ public class TodoListActions extends ActionsBase {
         DONE,TODO
     }
 
-    private TodomvcHomePage todomvcHomePage;
-    private TodomvcTodoListPage todomvcTodoListPage;
+    private TodoHomePage todomvcHomePage;
+    private TodoTodoListPage todomvcTodoListPage;
 
-    public TodoListActions(RemoteWebDriver driver) {
+    public TodoListActions(DriverWrapper driver) {
         super(driver);
     }
 
-    protected void initPages(RemoteWebDriver driver) {
-        todomvcHomePage = new TodomvcHomePage(driver);
-        todomvcTodoListPage = new TodomvcTodoListPage(driver);
+    protected void initPages(DriverWrapper driver) {
+        todomvcHomePage = new TodoHomePage(driver);
+        todomvcTodoListPage = new TodoTodoListPage(driver);
     }
 
     public void goToTodoListPage(){
@@ -29,7 +30,7 @@ public class TodoListActions extends ActionsBase {
     }
     public void addNewTodo(String todoName) {
         todomvcTodoListPage.setNewTodoName(todoName);
-        todomvcTodoListPage.hitEnterOnNewTodo();
+        todomvcTodoListPage.approveOnNewTodo();
     }
 
     public void verifyLastTodo(String toDoName) {

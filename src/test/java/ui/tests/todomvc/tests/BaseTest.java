@@ -9,13 +9,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import ui.tests.todomvc.actions.TodoListActions;
+import utils.webdriverWrapper.DriverWrapper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseTest {
 
-   private RemoteWebDriver driver ;
+   private DriverWrapper driver ;
    private String hubUrl;
    private String browser;
    protected TodoListActions todoListActions;
@@ -40,6 +41,8 @@ public class BaseTest {
     }
 
     private void driverSetup(){
+
+        RemoteWebDriver remoteWebDriver = null;
         DesiredCapabilities dc = new DesiredCapabilities();
 
         if (browser.equalsIgnoreCase("firefox")){
@@ -54,12 +57,14 @@ public class BaseTest {
 
         // need to get hub from configuration
         try {
-            driver = new RemoteWebDriver(new URL(hubUrl), dc);
+            remoteWebDriver = new RemoteWebDriver(new URL(hubUrl), dc);
         } catch (MalformedURLException e) {
-            Assert.fail("Failed to setup Webdriver",e);
+            Assert.fail("Failed to setup WebDriver",e);
         }
+
+        this.driver = new DriverWrapper(remoteWebDriver);
     }
-    //should be a class
+
     private void propertiesSetup(){
         hubUrl = System.getProperty("selenium.hub.url");
         browser = System.getProperty("selenium.browser","Chrome");
