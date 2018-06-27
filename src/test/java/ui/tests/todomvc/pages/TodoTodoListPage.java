@@ -15,7 +15,6 @@ public class TodoTodoListPage extends BasePage {
     @FindBy(xpath ="//input[@class='new-todo']" )
     private WebElement newTodoInput;
 
-
     private By.ByXPath todoNames = new By.ByXPath("//ul[@class ='todo-list']//li//label");
 
     public TodoTodoListPage(DriverWrapper driver) {
