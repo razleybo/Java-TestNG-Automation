@@ -2,8 +2,8 @@ package utils.webdriverWrapper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,11 +13,10 @@ import java.util.List;
 
 public class DriverWrapper implements Closeable {
 
-    private RemoteWebDriver driver ;
-    private final int WAIT_UNIT = 300;
+    private WebDriver driver ;
     private final int TIMEOUT_SEC = 10;
 
-    public DriverWrapper(RemoteWebDriver driver){
+    public DriverWrapper(WebDriver driver){
         this.driver=driver;
     }
 
