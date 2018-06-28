@@ -1,5 +1,9 @@
 package ui.tests.todomvc.tests;
 
+import org.apache.commons.logging.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.aspectj.lang.annotation.Before;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -8,6 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import ui.tests.todomvc.actions.TodoListActions;
 import utils.webdriverWrapper.DriverWrapper;
 
@@ -16,14 +21,25 @@ import java.net.URL;
 
 public class BaseTest {
 
-   private DriverWrapper driver ;
-   private String hubUrl;
-   private String browser;
-   protected TodoListActions todoListActions;
+    private DriverWrapper driver ;
+    private String hubUrl;
+    private String browser;
+    protected TodoListActions todoListActions;
+    private static  Logger logger;
 
+    public BaseTest()
+    {
+        logger = LogManager.getLogger(this.getClass());
+    }
+    @BeforeTest
+    public void propertiesSetup(){
+        hubUrl = System.getProperty("selenium.hub.url");
+        browser = System.getProperty("selenium.browser","Chrome");
+        logger.debug("Before Test");
+    }
     @BeforeClass
     public void setUp(){
-        propertiesSetup();
+        // propertiesSetup();
         driverSetup();
         actionsSetup();
     }
@@ -63,11 +79,6 @@ public class BaseTest {
         }
 
         this.driver = new DriverWrapper(remoteWebDriver);
-    }
-
-    private void propertiesSetup(){
-        hubUrl = System.getProperty("selenium.hub.url");
-        browser = System.getProperty("selenium.browser","Chrome");
     }
 
 }

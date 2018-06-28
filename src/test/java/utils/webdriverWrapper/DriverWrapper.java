@@ -8,9 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.tests.todomvc.pages.BasePage;
-
 import java.io.Closeable;
-import java.io.IOException;
 import java.util.List;
 
 public class DriverWrapper implements Closeable {

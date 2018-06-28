@@ -9,7 +9,6 @@ import ui.tests.todomvc.tests.BaseTest;
 public class AddNewTodo extends BaseTest {
     final int MAX_TASKS = 10 ;
     private String toDoName = "My Awesome ToDo";
-
     @Description("This test create a new Todo task and verify it location on the list")
     @Test
     @Step("Create first task")
