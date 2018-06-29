@@ -7,13 +7,16 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public  class WebdriverConfigurations {
 
-    public static enum Browser{
+    public enum Browser{
         Chrome,Firefox;
 
         @Override
         public String toString() {
             return this.name();
         }
+    }
+    public enum Execution {
+        Local,Remote
     }
     public static ChromeOptions getChromeOptions(){
         ChromeOptions options = new ChromeOptions();

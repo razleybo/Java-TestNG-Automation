@@ -9,7 +9,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger level="debug">
+        <Logger name = "todo.mvc" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="debug">

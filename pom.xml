@@ -10,16 +10,17 @@
 
     <properties>
         <selenium.version>3.11.0</selenium.version>
+
         <selenium.hub.host>localhost:4444</selenium.hub.host>
         <selenium.hub.url>http://${selenium.hub.host}/wd/hub</selenium.hub.url>
-        <browser>Chrome</browser>
-        <selenium.bineris.path>${project.basedir}/target/selenium/bin</selenium.bineris.path>
-        <!-- would have handle os in a profile  -->
-        <firefox.bin.path>${selenium.bineris.path}\windows\marionette\64bit\geckodriver.exe</firefox.bin.path>
-        <chrome.driver>${selenium.bineris.path}\windows\googlechrome\64bit\chromedriver.exe</chrome.driver>
+        <selenium.browser>Chrome</selenium.browser>
+        <selenium.execution>local</selenium.execution>
 
+        <!--Allure report configurations -->
         <aspectj.version>1.8.10</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <log4j.version>2.1</log4j.version>
     </properties>
 
     <dependencies>
@@ -33,12 +34,12 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.1</version>
+            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.1</version>
+            <version>${log4j.version}</version>
         </dependency>
 
         <dependency>
@@ -94,9 +95,8 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <selenium.hub.url>${selenium.hub.url}</selenium.hub.url>
-                        <selenium.browser>${browser}</selenium.browser>
-                        <firefox.bin.path>${firefox.bin.path}</firefox.bin.path>
-                        <webdriver.chrome.driver>${chrome.driver}</webdriver.chrome.driver>
+                        <selenium.browser>${selenium.browser}</selenium.browser>
+                        <selenium.execution>${selenium.execution}</selenium.execution>
                     </systemPropertyVariables>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

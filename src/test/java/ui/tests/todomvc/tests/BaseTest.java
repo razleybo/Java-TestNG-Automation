@@ -1,21 +1,17 @@
 package ui.tests.todomvc.tests;
 
+import configurations.ExecutionConfigurations;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.logging.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.aspectj.lang.annotation.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import ui.tests.todomvc.actions.TodoListActions;
 import utils.webdriverHelpers.WebdriverConfigurations;
 import utils.webdriverWrapper.DriverWrapper;
@@ -26,25 +22,18 @@ import java.net.URL;
 public class BaseTest {
 
     private DriverWrapper driver ;
-    private String hubUrl;
-    private String browser;
-    private String execution;
     protected TodoListActions todoListActions;
     private static  Logger logger;
+    ExecutionConfigurations conf ;
 
     public BaseTest()
     {
         logger = LogManager.getLogger(this.getClass().getSimpleName());
-    }
-    @BeforeTest
-    public void propertiesSetup(){
-        hubUrl = System.getProperty("selenium.hub.url");
-        browser = System.getProperty("selenium.browser","Chrome");
-        execution = System.getProperty("selenium.execution","Local");
+        conf =  ExecutionConfigurations.getConfigurations();
     }
     @BeforeClass
     public void setUp(){
-        driverSetup(this.browser);
+        driverSetup(conf.getBrowser());
         actionsSetup();
     }
     @AfterClass
@@ -60,7 +49,11 @@ public class BaseTest {
         todoListActions = new TodoListActions(driver);
     }
     private void driverSetup(String browser){
-        if (execution.equalsIgnoreCase("remote")){
+
+        if (conf.getExecution()
+                .equalsIgnoreCase(
+                        WebdriverConfigurations.Execution.Remote.name())){
+
             remoteDriverSetup(browser);
         }
         else {
@@ -87,9 +80,8 @@ public class BaseTest {
 
         RemoteWebDriver remoteWebDriver = null;
         DesiredCapabilities dc = WebdriverConfigurations.generateCapabilities(browser);
-
         try {
-            remoteWebDriver = new RemoteWebDriver(new URL(hubUrl), dc);
+            remoteWebDriver = new RemoteWebDriver(new URL(conf.getHubUrl()), dc);
         } catch (MalformedURLException e) {
             Assert.fail("Failed to setup WebDriver",e);
         }
