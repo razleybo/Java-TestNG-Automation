@@ -83,6 +83,33 @@
             <version>${selenium.version}</version>
         </dependency>
     </dependencies>
+    <profiles>
+
+        <profile>
+            <id>RemoteExecution</id>
+            <properties>
+                <selenium.execution>remote</selenium.execution>
+            </properties>
+        </profile>
+        <profile>
+            <id>LocalExecution</id>
+            <properties>
+                <selenium.execution>local</selenium.execution>
+            </properties>
+        </profile>
+        <profile>
+            <id>Firefox</id>
+            <properties>
+                <selenium.browser>firefox</selenium.browser>
+            </properties>
+        </profile>
+        <profile>
+            <id>Chrome</id>
+            <properties>
+                <selenium.browser>chrome</selenium.browser>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>

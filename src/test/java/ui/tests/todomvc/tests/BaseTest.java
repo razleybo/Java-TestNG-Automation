@@ -22,9 +22,10 @@ import java.net.URL;
 public class BaseTest {
 
     private DriverWrapper driver ;
+    private ExecutionConfigurations conf ;
+
     protected TodoListActions todoListActions;
-    private static  Logger logger;
-    ExecutionConfigurations conf ;
+    protected Logger logger;
 
     public BaseTest()
     {
@@ -33,11 +34,13 @@ public class BaseTest {
     }
     @BeforeClass
     public void setUp(){
+        logger.info("Starting Test");
         driverSetup(conf.getBrowser());
         actionsSetup();
     }
     @AfterClass
     public void tearDone(){
+        logger.info("Test is done");
         driverCleanup();
     }
 
@@ -62,6 +65,7 @@ public class BaseTest {
     }
     private void localDriverSetup(String browser)
     {
+        logger.info("setting up a local browser : "+browser);
         WebDriver localDriver = null ;
 
         if (browser.equalsIgnoreCase(WebdriverConfigurations.Browser.Firefox.name())){
@@ -77,6 +81,7 @@ public class BaseTest {
     }
 
     private void remoteDriverSetup(String browser){
+        logger.info("setting up a remote  browser : "+browser);
 
         RemoteWebDriver remoteWebDriver = null;
         DesiredCapabilities dc = WebdriverConfigurations.generateCapabilities(browser);
