@@ -32,14 +32,14 @@ public class DriverWrapper implements Closeable {
     public void getPage(String url){
         driver.get(url);
     }
-    public void clearText(WebElement elemetToClear) {
-        elemetToClear.clear();
+    public void clearText(WebElement elementToClear) {
+        elementToClear.clear();
     }
-    public void setText(WebElement elemetToSetText,String textToSet) {
-        elemetToSetText.sendKeys(textToSet);
+    public void setText(WebElement elementToSetText,String textToSet) {
+        elementToSetText.sendKeys(textToSet);
     }
-    public void hitEnter(WebElement elemetToHit) {
-        elemetToHit.sendKeys(Keys.ENTER);
+    public void hitEnter(WebElement elementToHit) {
+        elementToHit.sendKeys(Keys.ENTER);
     }
 
     public List<WebElement> getAllElements(By todoNames) {
