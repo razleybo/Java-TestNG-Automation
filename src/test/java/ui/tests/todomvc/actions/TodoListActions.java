@@ -1,6 +1,5 @@
 package ui.tests.todomvc.actions;
 
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import ui.tests.todomvc.pages.TodoHomePage;
 import ui.tests.todomvc.pages.TodoTodoListPage;
@@ -32,7 +31,7 @@ public class TodoListActions extends ActionsBase {
     public void goToTodoListPage(){
         logger.debug("Navigate to the todo list page");
         todomvcHomePage.getPage();
-        todomvcTodoListPage.waitForPageLoade();
+        todomvcTodoListPage.waitForPageLoad();
     }
     public void addNewTodo(String todoName) {
         logger.debug("Adding todo task named : "+todoName);
@@ -40,20 +39,20 @@ public class TodoListActions extends ActionsBase {
         todomvcTodoListPage.approveOnNewTodo();
     }
 
-    public void verifyLastTodo(String toDoName) {
-        logger.debug("Verify todo task named : "+toDoName +" is the last one on the list");
+    public void verifyLastTodo(String todoName) {
+        logger.debug("Verify todo task named : "+todoName +" is the last one on the list");
         String actualLastTodo = todomvcTodoListPage.getLastTodoText();
-        Assert.assertEquals(actualLastTodo,toDoName,"Last todo was not as expected");
+        Assert.assertEquals(actualLastTodo,todoName,"Last todo was not as expected");
     }
 
-    public void toggleToDo(String toDoName) {
-        logger.debug("toggle todo named : "+toDoName);
-        todomvcTodoListPage.toggleTodo(toDoName);
+    public void toggleToDo(String todoName) {
+        logger.debug("toggle todo named : "+todoName);
+        todomvcTodoListPage.toggleTodo(todoName);
     }
 
-    public void verifyToDoState(String toDoName, ToDoState exactedState) {
-        logger.debug("verify that todo  named : "+toDoName+ "is at state "+exactedState );
-       String actualStatus =  todomvcTodoListPage.getTodoStatus(toDoName);
+    public void verifyToDoState(String todoName, ToDoState exactedState) {
+        logger.debug("verify that todo  named : "+todoName+ "is at state "+exactedState );
+       String actualStatus =  todomvcTodoListPage.getTodoStatus(todoName);
        String expected ="" ;
        if (exactedState.equals(ToDoState.DONE)){
            expected = "completed";

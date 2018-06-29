@@ -2,7 +2,6 @@ package ui.tests.todomvc.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import utils.webdriverWrapper.DriverWrapper;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class TodoTodoListPage extends BasePage {
 
     // ideally we would have ask for id from the developer
-    // since this is not passble in this case, we use a complex xpath
+    // since this is not passable in this case, we use a complex xpath
     @FindBy(xpath ="//input[@class='new-todo']" )
     private WebElement newTodoInput;
 
@@ -30,25 +29,25 @@ public class TodoTodoListPage extends BasePage {
     }
 
     public String getLastTodoText() {
-        List<WebElement> allTdodNames = driver.getAllElements(todoNames);
-        return allTdodNames.get(allTdodNames.size()-1).getText();
+        List<WebElement> allTodoNames = driver.getAllElements(todoNames);
+        return allTodoNames.get(allTodoNames.size()-1).getText();
     }
 
-    public void toggleTodo(String toDoName) {
+    public void toggleTodo(String todoName) {
         // ideally we would have ask for id from the developer
-        // since this is not passble in this case, we use a complex xpath
-        By toDoToToggle = new By.ByXPath("//label[text()='"+toDoName+"']/../input");
+        // since this is not passable in this case, we use a complex xpath
+        By toDoToToggle = new By.ByXPath("//label[text()='"+todoName+"']/../input");
         driver.waitForElement(toDoToToggle).click();
     }
-    public String getTodoStatus(String toDoName) {
+    public String getTodoStatus(String todoName) {
         // ideally we would have ask for id from the developer
-        // since this is not passble in this case, we use a complex xpath
-        By toDoTargetStatus = new By.ByXPath("//*[text()='"+toDoName+"']/../..");
+        // since this is not passable in this case, we use a complex xpath
+        By toDoTargetStatus = new By.ByXPath("//*[text()='"+todoName+"']/../..");
         //same here , we want the developer to add an attribute or id for this
         return driver.getAttributeValue(toDoTargetStatus,"class");
     }
 
-    public void waitForPageLoade() {
+    public void waitForPageLoad() {
         driver.waitForElement(newTodoInput);
     }
 }

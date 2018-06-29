@@ -7,25 +7,25 @@ import ui.tests.todomvc.tests.BaseTest;
 
 public class MarkTodoAsDone extends BaseTest {
 
-    private String toDoName = "My Awesome ToBeDone";
+    private String todoName = "My Awesome ToBeDone";
 
     @Description("This test create a new Todo task and mark it as done and then as un done")
 
     @Test(description = "Adding a new Task")
     public void addNewTask(){
         todoListActions.goToTodoListPage();
-        todoListActions.addNewTodo(toDoName);
-        todoListActions.verifyLastTodo(toDoName);
-        todoListActions.verifyToDoState(toDoName,TodoListActions.ToDoState.TODO);
+        todoListActions.addNewTodo(todoName);
+        todoListActions.verifyLastTodo(todoName);
+        todoListActions.verifyToDoState(todoName,TodoListActions.ToDoState.TODO);
     }
     @Test(description = "Mark task as done",dependsOnMethods = "addNewTask")
     public void markTodoAsDone(){
-        todoListActions.toggleToDo(toDoName);
-        todoListActions.verifyToDoState(toDoName,TodoListActions.ToDoState.DONE);
+        todoListActions.toggleToDo(todoName);
+        todoListActions.verifyToDoState(todoName,TodoListActions.ToDoState.DONE);
     }
     @Test(description = "Undo mark task as done",dependsOnMethods = "markTodoAsDone")
     public void unMarkTodoAsDone(){
-        todoListActions.toggleToDo(toDoName);
-        todoListActions.verifyToDoState(toDoName,TodoListActions.ToDoState.TODO);
+        todoListActions.toggleToDo(todoName);
+        todoListActions.verifyToDoState(todoName,TodoListActions.ToDoState.TODO);
     }
 }
