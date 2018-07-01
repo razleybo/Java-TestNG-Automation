@@ -5,6 +5,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+/**
+ * This class meant to aggregate and simplify a web driver execution configurations
+ */
 public  class WebdriverConfigurations {
 
     public enum Browser{
@@ -14,11 +17,12 @@ public  class WebdriverConfigurations {
     public enum Execution {
         Local,Remote
     }
-    public static ChromeOptions getChromeOptions(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        return options;
-    }
+    /***
+     * This method generate the desired capability for selenium execution ,
+     * this assuming we only have Firefox and Chrome
+     * @param browser required browser , Chrome or Firefox
+     * @return Desired Capabilities, Chrome is default (typos will return Chrome )
+     */
     public static DesiredCapabilities generateCapabilities (String browser){
 
         DesiredCapabilities dc = new DesiredCapabilities();
@@ -32,5 +36,10 @@ public  class WebdriverConfigurations {
                     getChromeOptions());
         }
         return dc;
+    }
+    public static ChromeOptions getChromeOptions(){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        return options;
     }
 }

@@ -1,7 +1,6 @@
 package ui.tests.todomvc.tests.todolist;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import ui.tests.todomvc.tests.BaseTest;
 

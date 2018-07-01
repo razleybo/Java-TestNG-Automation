@@ -11,15 +11,24 @@ import ui.tests.todomvc.pages.BasePage;
 import java.io.Closeable;
 import java.util.List;
 
+/***
+ * This class meant to encapsulate the Webdriver  and allow extra functionally
+ */
 public class DriverWrapper implements Closeable {
 
     private WebDriver driver ;
-    private final int TIMEOUT_SEC = 10;
+    private final static int TIMEOUT_SEC = 10;
 
     public DriverWrapper(WebDriver driver){
         this.driver=driver;
     }
 
+    /***
+     * Wait until element is viable on DOM , wait for {@value TIMEOUT_SEC} seconds .
+     *  in case of time out , an element not found exception will be thrown
+     * @param elementToWaitFor WebElement to wait for
+     * @return the web element after found
+     */
     public WebElement  waitForElement (WebElement elementToWaitFor){
 
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT_SEC);
@@ -46,9 +55,23 @@ public class DriverWrapper implements Closeable {
         return driver.findElements(todoNames);
     }
 
+    /***
+     *  return the value of a requested attribute on a webElement
+     *  waits for the element first.
+     *
+     * @param elementToQuarry the element to serch the attribute's valu on
+     * @param attToGet the attribute name
+     *
+     * @return return the value of a requested attribute on a webElement empty string if not found
+     */
     public String getAttributeValue(By elementToQuarry, String attToGet) {
-        return driver.findElement(elementToQuarry).getAttribute(attToGet);
+        return waitForElement(elementToQuarry).getAttribute(attToGet);
     }
+
+    /***
+     * init elements on page using selenium page factory
+     * @param pageToInit the page to init
+     */
     public void initPage (BasePage pageToInit){
         PageFactory.initElements(driver,pageToInit);
     }

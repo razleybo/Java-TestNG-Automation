@@ -42,6 +42,12 @@ public class TodoTodoListPage extends BasePage {
         By toDoToToggle = new By.ByXPath("//label[text()='"+todoName+"']/../input");
         driver.waitForElement(toDoToToggle).click();
     }
+
+    /***
+     * get the status by the to so name , status is being pulled by the class value
+     * @param todoName the name od the task to quarry
+     * @return "completed" or empty string if not done
+     */
     public String getTodoStatus(String todoName) {
         // ideally we would have ask for id from the developer
         // since this is not passable in this case, we use a complex xpath

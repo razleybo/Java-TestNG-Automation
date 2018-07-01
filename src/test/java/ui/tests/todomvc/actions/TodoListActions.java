@@ -22,8 +22,8 @@ public class TodoListActions extends ActionsBase {
         }
     }
 
-    private TodoHomePage todomvcHomePage;
-    private TodoTodoListPage todomvcTodoListPage;
+    private TodoHomePage todoHomePage;
+    private TodoTodoListPage todoTodoListPage;
 
     public TodoListActions(DriverWrapper driver) {
         super(driver);
@@ -31,24 +31,24 @@ public class TodoListActions extends ActionsBase {
 
     protected void initPages(DriverWrapper driver) {
         logger.trace("starting pages");
-        todomvcHomePage = new TodoHomePage(driver);
-        todomvcTodoListPage = new TodoTodoListPage(driver);
+        todoHomePage = new TodoHomePage(driver);
+        todoTodoListPage = new TodoTodoListPage(driver);
     }
 
     public void goToTodoListPage(){
         logger.debug("Navigate to the todo list page");
-        todomvcHomePage.getPage();
-        todomvcTodoListPage.waitForPageLoad();
+        todoHomePage.getPage();
+        todoTodoListPage.waitForPageLoad();
     }
     public void addNewTodo(String todoName) {
         logger.debug("Adding todo task named : "+todoName);
-        todomvcTodoListPage.setNewTodoName(todoName);
-        todomvcTodoListPage.approveOnNewTodo();
+        todoTodoListPage.setNewTodoName(todoName);
+        todoTodoListPage.approveOnNewTodo();
     }
 
     public void verifyLastTodo(String todoName) {
         logger.debug("Verify todo task named : "+todoName +" is the last one on the list");
-        String actualLastTodo = todomvcTodoListPage.getLastTodoText();
+        String actualLastTodo = todoTodoListPage.getLastTodoText();
 
         Assert.assertNotNull(actualLastTodo,"No todo ware found in tha list ");
         Assert.assertEquals(actualLastTodo,todoName,"Last todo was not as expected");
@@ -56,12 +56,12 @@ public class TodoListActions extends ActionsBase {
 
     public void toggleToDo(String todoName) {
         logger.debug("toggle todo named : "+todoName);
-        todomvcTodoListPage.toggleTodo(todoName);
+        todoTodoListPage.toggleTodo(todoName);
     }
 
     public void verifyToDoState(String todoName, ToDoState exactedState) {
         logger.debug("verify that todo  named : "+todoName+ "is at state "+exactedState );
-       String actualStatus =  todomvcTodoListPage.getTodoStatus(todoName);
+       String actualStatus =  todoTodoListPage.getTodoStatus(todoName);
        Assert.assertEquals(actualStatus,exactedState.toString(),"Todo State was not as expected");
     }
 }

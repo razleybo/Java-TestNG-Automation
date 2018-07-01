@@ -19,6 +19,11 @@ import utils.webdriverWrapper.DriverWrapper;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/***
+ * This is the base class for all tests
+ * it init the Webdriver and the all actions
+ * also close Webdriver in the end
+ */
 public class BaseTest {
 
     private DriverWrapper driver ;
@@ -35,7 +40,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp(){
         logger.info("Starting Test");
-        driverSetup(conf.getBrowser());
+        this.driver = driverSetup(conf.getBrowser(),conf.getExecution());
         actionsSetup();
     }
     @AfterClass
@@ -51,19 +56,26 @@ public class BaseTest {
     private void actionsSetup() {
         todoListActions = new TodoListActions(driver);
     }
-    private void driverSetup(String browser){
 
-        if (conf.getExecution()
+    /***
+     * this method configures the webdriver wrapper according to wanted browser and execution
+     * @param browser required browser Chrome or Firefox
+     * @param execution required execution Local or remote (typo will return local )
+     * @return DriverWrapper to run with
+     */
+    private DriverWrapper driverSetup(String browser , String execution ){
+        DriverWrapper res = null ;
+        if (execution
                 .equalsIgnoreCase(
                         WebdriverConfigurations.Execution.Remote.name())){
-
-            remoteDriverSetup(browser);
+            res = remoteDriverSetup(browser);
         }
         else {
-            localDriverSetup(browser);
+            res =  localDriverSetup(browser);
         }
+        return res;
     }
-    private void localDriverSetup(String browser)
+    private DriverWrapper localDriverSetup(String browser)
     {
         logger.info("setting up a local browser : "+browser);
         WebDriver localDriver = null ;
@@ -77,10 +89,10 @@ public class BaseTest {
             localDriver = new ChromeDriver(WebdriverConfigurations.getChromeOptions());
         }
 
-        this.driver = new DriverWrapper(localDriver);
+        return new DriverWrapper(localDriver);
     }
 
-    private void remoteDriverSetup(String browser){
+    private DriverWrapper remoteDriverSetup(String browser){
         logger.info("setting up a remote  browser : "+browser);
 
         RemoteWebDriver remoteWebDriver = null;
@@ -90,7 +102,7 @@ public class BaseTest {
         } catch (MalformedURLException e) {
             Assert.fail("Failed to setup WebDriver",e);
         }
-        this.driver = new DriverWrapper(remoteWebDriver);
+        return new DriverWrapper(remoteWebDriver);
     }
 
 }
