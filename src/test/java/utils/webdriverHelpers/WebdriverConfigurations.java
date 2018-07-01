@@ -10,10 +10,6 @@ public  class WebdriverConfigurations {
     public enum Browser{
         Chrome,Firefox;
 
-        @Override
-        public String toString() {
-            return this.name();
-        }
     }
     public enum Execution {
         Local,Remote
