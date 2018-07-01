@@ -8,10 +8,17 @@ import utils.webdriverWrapper.DriverWrapper;
 public class TodoListActions extends ActionsBase {
 
     public enum ToDoState{
-        DONE,TODO;
-        @Override
-        public String toString(){
-            return this.name();
+        DONE {
+            @Override
+            public String toString(){
+                return "completed";
+            }
+        }
+        ,TODO{
+            @Override
+            public String toString(){
+                return "";
+            }
         }
     }
 
@@ -55,10 +62,6 @@ public class TodoListActions extends ActionsBase {
     public void verifyToDoState(String todoName, ToDoState exactedState) {
         logger.debug("verify that todo  named : "+todoName+ "is at state "+exactedState );
        String actualStatus =  todomvcTodoListPage.getTodoStatus(todoName);
-       String expected ="" ;
-       if (exactedState.equals(ToDoState.DONE)){
-           expected = "completed";
-       }
-       Assert.assertEquals(actualStatus,expected,"Todo State was not as expected");
+       Assert.assertEquals(actualStatus,exactedState.toString(),"Todo State was not as expected");
     }
 }
