@@ -42,6 +42,8 @@ public class TodoListActions extends ActionsBase {
     public void verifyLastTodo(String todoName) {
         logger.debug("Verify todo task named : "+todoName +" is the last one on the list");
         String actualLastTodo = todomvcTodoListPage.getLastTodoText();
+
+        Assert.assertNotNull(actualLastTodo,"No todo ware found in tha list ");
         Assert.assertEquals(actualLastTodo,todoName,"Last todo was not as expected");
     }
 

@@ -30,6 +30,9 @@ public class TodoTodoListPage extends BasePage {
 
     public String getLastTodoText() {
         List<WebElement> allTodoNames = driver.getAllElements(todoNames);
+        if (allTodoNames.size()<1) {
+            return null;
+        }
         return allTodoNames.get(allTodoNames.size()-1).getText();
     }
 
