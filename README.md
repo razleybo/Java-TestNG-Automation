@@ -40,7 +40,7 @@ execution example will be :
 mvn clean test -P Firefox,Remote -Dselenium.hub.host="myAwesomeHubMachine:4444" 
 ```
 ### Reporting  
-Allure report 2.0 is integated and can be shouwed by running :
+Allure report 2.0 is integated and can be shown by running :
 ```
 mvn allure:serve
 ```
