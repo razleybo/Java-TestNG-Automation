@@ -17,13 +17,17 @@ or
 ```
 Using the profile Chrome ,or Firefox , will allow executiong on each browser .
 ### Run localy 
-Download a [selenium stand alone binery](https://docs.seleniumhq.org/download/) and a [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and Run the stand alone Server.
+defult execution runs with Chrom broeser 
 ```
-java -jar selenium-server-standalone-<version>.jar
+mvn clean test 
 ```
-### Run with remote hub
-All binaries are beeing automaticly downloaded 
-so only hub configurations is needed :
+in order to run with Firefx you need to add the Firefox profile 
+```
+mvn clean test -P Firefox
+```
+### Run with hub
+in oreder to run with a hub , you need to add the Remote profile 
+by defult the hub is configured to localhost:4444 this configuration can be changed by overriding properties :
 ```
 -Dselenium.hub.host="myAwesomeHubMachine:4444" 
 ```
@@ -31,17 +35,12 @@ or
 ```
 -Dselenium.hub.url = "http://myAwesomeHubMachine:4444/wd/hub"
 ```
-
-### Executing 
-Executing with Maven :
-* local selenium 
+execution example will be :
 ```
-mvn test
+mvn clean test -P Firefox,Remote -Dselenium.hub.host="myAwesomeHubMachine:4444" 
 ```
-* remote hub 
-```
-mvn test -Dselenium.hub.host="myAwesomeHubMachine:4444"
-```
+### Reporting  
+Allure report 2.0 is integated and can be 
 
 ## Next Implimitations 
 This section describe the next things I would like to implement
