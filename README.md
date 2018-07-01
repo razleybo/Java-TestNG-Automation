@@ -40,20 +40,12 @@ execution example will be :
 mvn clean test -P Firefox,Remote -Dselenium.hub.host="myAwesomeHubMachine:4444" 
 ```
 ### Reporting  
-Allure report 2.0 is integated and can be 
+Allure report 2.0 is integated and can be shouwed by running :
+```
+mvn allure:serve
+```
 
-## Next Implimitations 
-This section describe the next things I would like to implement
-
-### Running Log
-We are missing a log reflecting on runtime , what is beeing performed 
-
-### Readable report
-since we are using surefire plugin , we have automatic report under target/surefire-reports
-this can be improved 
-
-
-## Authors
+## Author
 
 * **Raz Leybowitch** - *:-)* 
 
